@@ -51,57 +51,14 @@ public class Board extends JFrame
         }
         if(output)
         {
-            if(board[sx][sy].getRank() == )
+            if(board[sx][sy].getRank() == 1)
+            {
+                
+            }
         }
         return output;
     }
     
-    public void print()
-    {
-        for(int i = 0; i<10; i++)
-        {
-            System.out.println();
-        }
-        System.out.println("  0 1 2 3 4 5 6 7 ");
-        System.out.println(" _________________");
-        for(int r = 0; r < 8; r++)
-        {
-            System.out.print(r + "|");
-            for(int c = 0; c < 8; c++)
-            {
-                if(board[r][c].getColor() == 0)
-                {
-                    System.out.print(" ");
-                }
-                else if(board[r][c].getColor() == 1)
-                {
-                    if(board[r][c].getRank() == 1)
-                    {
-                        System.out.print("r");
-                    }
-                    else
-                    {
-                        System.out.print("R");
-                    }
-                }
-                else
-                {
-                    if(board[r][c].getRank() == 1)
-                    {
-                        System.out.print("b");
-                    }
-                    else
-                    {
-                        System.out.print("B");
-                    }
-                }
-                System.out.print("|");
-            }
-            System.out.println(r);
-            System.out.println(" _________________");
-        }
-        System.out.println("  0 1 2 3 4 5 6 7 ");
-    }
     
     public boolean move(int turn, int sx, int sy, int ex, int ey)
     {
