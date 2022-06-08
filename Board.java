@@ -11,17 +11,17 @@ public class Board extends JFrame
         {
             for(int c = 0; c < 8; c++)
             {
-                if(r < 3)
+                if(r < 2)
                 {
-                    board[r][c]= new Square(1, 1, r, c);
+                    board[r][c]= new Square(1, r, c);
                 }
-                else if(r < 5)
+                else if(r < 6)
                 {
-                    board[r][c]= new Square(0, 0, r, c);
+                    board[r][c]= new Square(0, r, c);
                 }
                 else
                 {
-                    board[r][c]= new Square(1, 2, r, c);
+                    board[r][c]= new Square(2, r, c);
                 }
                 if(!(board[r][c].getValid()))
                 {
