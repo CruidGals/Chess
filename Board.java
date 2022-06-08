@@ -49,35 +49,9 @@ public class Board extends JFrame
         {
             output = false;
         }
-        if(output &&(!board[ex][ey].getValid() || !board[sx][sy].getValid()))
-        {
-            output = false;
-        }
-        if(!(sx-2 <= ex && ex <= sx+2) || !(sy-2 <= ey && ey <= sy+2))
-        {
-            output = false;
-        }
-        if( output &&((sx == ex)||(sy==ey)))
-        {
-            output = false;
-        }
-        if(output && board[sx][sy].getRank()== 1 && sx>ex && turn == 1)
-        {
-            output = false;
-        }
-        if(output && board[sx][sy].getRank()== 1 && sx<ex && turn == 2)
-        {
-            output = false;
-        }
         if(output)
         {
-            if(!(sx-1 <= ex && ex <= sx+1) || !(sy-1 <= ey && ey <= sy+1))
-            {
-                if(board[(ex + sx)/2][(sy + ey)/2].getColor() == turn || board[(ex + sx)/2][(sy + ey)/2].getColor() == 0)
-                {
-                    output = false;
-                }
-            }
+            if(board[sx][sy].getRank() == )
         }
         return output;
     }
