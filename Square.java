@@ -14,15 +14,14 @@ public class Square extends JPanel
     public static boolean pieceSelected = false;
     private boolean isValid;// says whether or not a square is a valid spot to be
     
-    private final int x;
-    private final int y;
-    public Square(int rank, int color, int x, int y)
+    private final int row; //Row
+    private final int col; // Column
+    public Square(int color, int x, int y)
     {
-        this.x = x;
-        this.y = y;
+        row = x;
+        col = y;
         
-        isValid = (x + y) % 2 == 1;
-        p = new Piece(rank, color, isValid);
+        p = getStartingPiece();
         setGameBackground();
         
         setLayout(new GridLayout(1,1));
@@ -31,53 +30,25 @@ public class Square extends JPanel
         addMouseListener(new ClickListener());
     }
 
-    public Square(int rank, int color, boolean valid, int x, int y)
-    {
-        this.x = x;
-        this.y = y;
-        
-        isValid = valid;
-        p = new Piece(rank, color, isValid);
-        setGameBackground();
-
-        setLayout(new GridLayout(1,1));
-        add(p);
-        addMouseListener(new ClickListener());
-    }
 
     public int getColor()
     {
         return p.getColor();
     }
-
-    public int getRank()
-    {
-        return p.getRank();
-    }
     
     public int getRow()
     {
-        return x;
+        return row;
     }
     
     public int getCol()
     {
-        return y;
+        return col;
     }
 
     public void setColor(int c)
     {
         p.setColor(c);
-    }
-
-    public void setRank(int r)
-    {
-        p.setRank(r);
-    }
-
-    public boolean getValid()
-    {
-        return isValid;
     }
     
     public Piece getPiece() 
@@ -87,14 +58,56 @@ public class Square extends JPanel
 
     public void setGameBackground() 
     {
-        if(isValid) 
+        if((row + col) % 2 == 1) 
         {
-            setBackground(Color.white);
+            setBackground(new Color(125, 148, 93));
         }
         else 
         {
-            setBackground(new Color(40,40,40));
+            setBackground(new Color(238, 238, 213));
         }
+    }
+    
+    private Piece getStartingPiece()
+    {
+        int color = 0;
+        Piece piece;
+        if(row < 2) {
+            color = 2; //Color is black
+        } else if (row > 5) {
+            color = 1; //Color is white
+        } else {
+            color = 0; //No Piece
+        }
+        
+        if(row == 0 || row == 7) { //Checks if row is an end row
+            switch(col) { //Creates piece based on starting position
+                case 0: piece = new Rook(color);
+                        break;
+                case 1: piece = new Knight(color);
+                        break;
+                case 2: piece = new Bishop(color);
+                        break;
+                case 3: piece = new Queen(color);
+                        break;
+                case 4: piece = new King(color);
+                        break;
+                case 5: piece = new Bishop(color);
+                        break;
+                case 6: piece = new Knight(color);
+                        break;
+                default: piece = new Rook(color);
+                        break;
+            }
+        }
+        else if (row == 1 || row == 6) { //Checks if row is 2nd row from end row
+            piece = new Pawn(color);
+        }
+        else {
+            piece = new Piece(color);
+        }
+        
+        return piece;
     }
 
 
