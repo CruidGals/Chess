@@ -12,23 +12,38 @@ public class Square extends JPanel
 {
     private Piece p;
     public static Square squareSelected = null;
-    private boolean isValid;// says whether or not a square is a valid spot to be
+
+    private JPanel cardManager = new JPanel();
+    private JPanel moveOptionPanel = new JPanel();
+    private JLabel moveOptionIcon = new JLabel(new ImageIcon(getClass().getResource("resources/moveOption.png")));
     
     private final int row; //Row
     private final int col; // Column
-    
     private boolean isDark;
+
+    private CardLayout cards = new CardLayout();
+
     public Square(int color, int x, int y)
     {
         row = x;
         col = y;
-        
         isDark = (row + col) % 2 == 1;
-        p = getStartingPiece();
-        setGameBackground();
-        
-        add(p);
 
+        cardManager.setLayout(cards);
+        cardManager.setOpaque(false);
+
+        p = getStartingPiece();
+        p.setOpaque(false);
+
+        moveOptionPanel.setOpaque(false);
+        moveOptionPanel.add(moveOptionIcon);
+
+        cardManager.add(p, "Piece");
+        cardManager.add(moveOptionPanel, "MoveOption");
+
+        add(cardManager);
+
+        setGameBackground();
         addMouseListener(new ClickListener());
     }
 
