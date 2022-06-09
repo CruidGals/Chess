@@ -33,9 +33,14 @@ public class Board extends JFrame
         }
     }
     
+    public static boolean withinBoard(int sx, int sy, int ex, int ey)
+    {
+        return ((0 <= sx && sx <= 7)&&(0 <= sy && sy <= 7) && (0 <= ex && ex <= 7)&&(0 <= ey && ey <= 7));
+    }
+
     private boolean isMoveValid(int turn, int sx, int sy, int ex, int ey)
     {
-        boolean output = ((0 <= sx && sx <= 7)&&(0 <= sy && sy <= 7) && (0 <= ex && ex <= 7)&&(0 <= ey && ey <= 7));
+        boolean output = withinBoard(sx, sy, ex, ey);
         if(output && turn != board[sx][sy].getColor())
         {
             output = false;
