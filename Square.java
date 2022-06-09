@@ -101,9 +101,11 @@ public class Square extends JPanel
 
     public void displayPossibleMoves()
     {
-        if(p.getRank() == 1) {
-            System.out.println("here");
+        if(p instanceof Pawn) {
             ((Pawn) p).togglePieceMoveOptions();
+        } else if (p instanceof Knight) {
+            System.out.println("here");
+            ((Knight) p).togglePieceMoveOptions();
         }
     }
 
@@ -123,6 +125,9 @@ public class Square extends JPanel
 
     public void toggleMoveOption()
     {
+        if(p.getColor() == Main.turn) {
+            return;
+        }
         if(!showingMoveOption)
         {
             if(p.getColor() > 0)
@@ -221,6 +226,7 @@ public class Square extends JPanel
             {
                 squareSelected = temp;
             }
+
         }
         
         private void colorSquare(Square temp)
