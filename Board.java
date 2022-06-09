@@ -23,7 +23,6 @@ public class Board extends JFrame
                 {
                     board[r][c]= new Square(2, r, c);
                 }
-
             }
         }
         
@@ -68,7 +67,10 @@ public class Board extends JFrame
                 board[(sx+ex)/2][(sy+ey)/2].reset();
                 board[(sx+ex)/2][(sy+ey)/2].getPiece().updatePiece();
             }
-            
+            if((turn == 1 && ex == 7)||(turn == 2 && ex == 0))
+            {
+                //makeKing(ex, ey);
+            }
             
             board[ex][ey].getPiece().updatePiece();
             board[sx][sy].getPiece().updatePiece();
@@ -80,7 +82,6 @@ public class Board extends JFrame
     {
         return ((sx-1 > ex || ex > sx+1) || (sy-1 > ey || ey > sy+1));
     }
-    
     
     public int gameWinner()
     {

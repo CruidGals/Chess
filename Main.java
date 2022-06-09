@@ -18,7 +18,7 @@ public class Main
 
     public static void main(String[] args)
     {
-        game.setSize(1000,1000);
+        game.setSize(900,900);
         game.setResizable(false);
         game.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
