@@ -11,19 +11,22 @@ import java.awt.event.*;
 public class Square extends JPanel
 {
     private Piece p;
-    public static boolean pieceSelected = false;
+    public static Square squareSelected = null;
     private boolean isValid;// says whether or not a square is a valid spot to be
     
     private final int row; //Row
     private final int col; // Column
+    
+    private boolean isDark;
     public Square(int color, int x, int y)
     {
         row = x;
         col = y;
         
+        isDark = (row + col) % 2 == 1;
         p = getStartingPiece();
         setGameBackground();
-
+        
         add(p);
 
         addMouseListener(new ClickListener());
@@ -62,7 +65,7 @@ public class Square extends JPanel
 
     public void setGameBackground() 
     {
-        if((row + col) % 2 == 1) 
+        if(isDark) 
         {
             setBackground(new Color(125, 148, 93));
         }
@@ -83,8 +86,6 @@ public class Square extends JPanel
         } else {
             color = 0; //No Piece
         }
-
-        System.out.print(color + " ");
         
         if(row == 0 || row == 7) { //Checks if row is an end row
             switch(col) { //Creates piece based on starting position
@@ -129,47 +130,40 @@ public class Square extends JPanel
         {
             Square temp = (Square) e.getSource();
 
-            if(pieceSelected) 
+            if(squareSelected != null) 
             {
-                resetBackground();
-                if(temp.getColor() == 0 && isValid)
+                squareSelected.setGameBackground();
+            }
+            
+            if(squareSelected != temp && temp.getColor() > 0)
+            {
+                if(Main.turn == temp.getColor())
                 {
-                    Main.endSquare = temp;
+                    colorSquare(temp);
                 }
             }
             
-            if(isValid && !pieceSelected) 
+            if(squareSelected == temp)
             {
-                if(temp.getColor() == Main.turn) 
-                {
-                    temp.setBackground(Color.yellow);
-                    pieceSelected = true;
-                    Main.startSquare = temp;
-                }
-                else if(Main.endSquare == null)
-                {
-                    Main.startSquare = null;
-                }
+                squareSelected = null;
             }
-            
-            if(Main.startSquare != null && Main.endSquare != null)
+            else
             {
-                Main.move();
+                squareSelected = temp;
             }
-            
+        }
+        
+        private void colorSquare(Square temp)
+        {
+            if(isDark)
+            {
+                temp.setBackground(new Color(186, 202, 43));
+            }
+            else
+            {
+                temp.setBackground(new Color(246, 246, 105));
+            }
         }
 
-        public void resetBackground() 
-        {
-            for(Square[] row : Board.board) {
-                for(Square col : row) {
-                    if(col.getBackground().equals(Color.yellow)) {
-                        col.setGameBackground();
-                        pieceSelected = false;
-                        return;
-                    }
-                }
-            }
-        }
     }
 }

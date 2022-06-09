@@ -13,7 +13,7 @@ public class Board extends JFrame
             {
                 if(r < 2)
                 {
-                    board[r][c]= new Square(1, r, c);
+                    board[r][c]= new Square(2, r, c);
                 }
                 else if(r < 6)
                 {
@@ -21,7 +21,7 @@ public class Board extends JFrame
                 }
                 else
                 {
-                    board[r][c]= new Square(2, r, c);
+                    board[r][c]= new Square(1, r, c);
                 }
             }
         }
@@ -47,6 +47,26 @@ public class Board extends JFrame
         if(output)
         {
             if(board[sx][sy].getRank() == 1)
+            {
+                output = Pawn.checkBoardPiece(sx, sy, ex, ey);
+            }
+            if(board[sx][sy].getRank() == 2)
+            {
+                
+            }
+            if(board[sx][sy].getRank() == 3)
+            {  
+                output = Knight.checkBoardPiece(sx, sy, ex, ey); 
+            }
+            if(board[sx][sy].getRank() == 4)
+            {
+                output = Rook.checkBoardPiece(sx, sy, ex, ey);
+            }
+            if(board[sx][sy].getRank() == 5)
+            {
+                
+            }
+            if(board[sx][sy].getRank() == 6)
             {
                 
             }
