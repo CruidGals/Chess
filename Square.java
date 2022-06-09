@@ -81,6 +81,12 @@ public class Square extends JPanel
     {
         p.setColor(c);
     }
+
+    public void createPawn()
+    {
+        p = new Pawn(2, this);
+        cards.show(cardManager, "MoveOption");
+    } 
     
     public Piece getPiece() 
     {
@@ -226,7 +232,11 @@ public class Square extends JPanel
             {
                 squareSelected = temp;
             }
-
+            //DEBUG OPTION
+            if(SwingUtilities.isRightMouseButton(e))
+            {
+                createPawn();
+            }
         }
         
         private void colorSquare(Square temp)
