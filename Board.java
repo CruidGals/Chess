@@ -23,11 +23,7 @@ public class Board extends JFrame
                 {
                     board[r][c]= new Square(2, r, c);
                 }
-                if(!(board[r][c].getValid()))
-                {
-                    board[r][c].setRank(0);
-                    board[r][c].setColor(0);
-                }
+
             }
         }
         
@@ -66,17 +62,13 @@ public class Board extends JFrame
         if(isMoveValid(turn, sx, sy, ex, ey))
         {
             board[ex][ey].setColor(board[sx][sy].getColor());
-            board[ex][ey].setRank(board[sx][sy].getRank());
             board[sx][sy].reset();
             if(isAttack(sx, sy, ex, ey))
             {
                 board[(sx+ex)/2][(sy+ey)/2].reset();
                 board[(sx+ex)/2][(sy+ey)/2].getPiece().updatePiece();
             }
-            if((turn == 1 && ex == 7)||(turn == 2 && ex == 0))
-            {
-                makeKing(ex, ey);
-            }
+            
             
             board[ex][ey].getPiece().updatePiece();
             board[sx][sy].getPiece().updatePiece();
@@ -89,10 +81,6 @@ public class Board extends JFrame
         return ((sx-1 > ex || ex > sx+1) || (sy-1 > ey || ey > sy+1));
     }
     
-    public void makeKing(int x, int y)
-    {
-        board[x][y].setRank(2);
-    }
     
     public int gameWinner()
     {

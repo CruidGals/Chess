@@ -46,6 +46,11 @@ public class Square extends JPanel
         return col;
     }
 
+    public int getRank()
+    {
+        return p.getRank();
+    }
+    
     public void setColor(int c)
     {
         p.setColor(c);
@@ -113,7 +118,7 @@ public class Square extends JPanel
 
     public void reset()
     {
-        this.setRank(0);
+
         this.setColor(0);
     }
 
