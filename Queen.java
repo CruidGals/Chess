@@ -17,4 +17,10 @@ public class Queen extends Piece
     {
         return 5;
     }
+
+    public static boolean isValidMove(int startRow, int startCol, int endRow, int endCol)
+    {
+        boolean output = Rook.isValidMove(startRow, startCol, endRow, endCol) || Bishop.isValidMove(startRow, startCol, endRow, endCol);
+        return output;
+    }
 }

@@ -81,6 +81,11 @@ public class Piece extends JPanel
         return 0;
     }
     
+    public static boolean isValidMove(int sx, int sy, int ex, int ey)
+    {
+        return false;
+    }
+
     public void updatePiece()
     {
         if(c == 1)

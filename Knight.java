@@ -18,11 +18,11 @@ public class Knight extends Piece
         return 3;
     }
     
-    public static boolean checkBoardPiece(int sx, int sy, int ex, int ey)
+    public static boolean isValidMove(int startRow, int startCol, int endRow, int endCol)
     {
         boolean output = false;
         
-        if((Math.abs(ex-sx) == 2 && Math.abs(ey-sy) == 1) || (Math.abs(ey-sy) == 2 && Math.abs(ex-sx) == 1))
+        if((Math.abs(endRow-startRow) == 2 && Math.abs(endCol-startCol) == 1) || (Math.abs(endCol-startCol) == 2 && Math.abs(endRow-startRow) == 1))
         {
             output = true;
         }

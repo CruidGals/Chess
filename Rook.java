@@ -18,7 +18,7 @@ public class Rook extends Piece
         return 4;
     }
     
-    public static boolean checkBoardPiece(int sx, int sy, int ex, int ey)
+    public static boolean isValidMove(int sx, int sy, int ex, int ey)
     {
         boolean output = false;
         

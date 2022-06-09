@@ -48,27 +48,27 @@ public class Board extends JFrame
         {
             if(board[sx][sy].getRank() == 1)
             {
-                output = Pawn.checkBoardPiece(sx, sy, ex, ey);
+                output = Pawn.isValidMove(sx, sy, ex, ey);
             }
             if(board[sx][sy].getRank() == 2)
             {
-                
+                output = Bishop.isValidMove(sx, sy, ex, ey); 
             }
             if(board[sx][sy].getRank() == 3)
             {  
-                output = Knight.checkBoardPiece(sx, sy, ex, ey); 
+                output = Knight.isValidMove(sx, sy, ex, ey); 
             }
             if(board[sx][sy].getRank() == 4)
             {
-                output = Rook.checkBoardPiece(sx, sy, ex, ey);
+                output = Rook.isValidMove(sx, sy, ex, ey);
             }
             if(board[sx][sy].getRank() == 5)
             {
-                
+                output = Queen.isValidMove(sx, sy, ex, ey); 
             }
             if(board[sx][sy].getRank() == 6)
             {
-                
+                output = King.isValidMove(sx, sy, ex, ey); 
             }
         }
         return output;

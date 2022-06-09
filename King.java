@@ -18,4 +18,11 @@ public class King extends Piece
     {
         return 6;
     }
+
+    public static boolean isValidMove(int startRow, int startCol, int endRow, int endCol)
+    {
+        return true;
+        //King can move anywhere for now
+        //Will implement a "check" / "checkmate" function later which will change this code
+    }
 }

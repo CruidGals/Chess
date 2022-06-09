@@ -18,28 +18,28 @@ public class Pawn extends Piece
         return 1;
     }
     
-    public static boolean checkBoardPiece(int sx, int sy, int ex, int ey)
+    public static boolean isValidMove(int startRow, int startColumn, int endRow, int endCol)
     {
         boolean output = false;
         
         if(Main.turn == 1)
         {
-            if(ex == (sx - 1) && Board.board[ex][ey].getColor() != 2) 
+            if(endRow == (startRow - 1) && Board.board[endRow][endCol].getColor() != 2) 
             {
                 output = true;
             }
-            if(Math.abs(ey-sy) == 1 && ex == (sx - 1) && Board.board[ex][ey].getColor() == 2)
+            if(Math.abs(endCol-startColumn) == 1 && endRow == (startRow - 1) && Board.board[endRow][endCol].getColor() == 2)
             {
                 output = true;
             }
         }
         else
         {
-            if(ex == (sx + 1) && Board.board[ex][ey].getColor() != 1) 
+            if(endRow == (startRow + 1) && Board.board[endRow][endCol].getColor() != 1) 
             {
                 output = true;
             }
-            if(Math.abs(ey-sy) == 1 && ex == (sx - 1) && Board.board[ex][ey].getColor() == 1)
+            if(Math.abs(endCol-startColumn) == 1 && endRow == (startRow - 1) && Board.board[endRow][endCol].getColor() == 1)
             {
                 output = true;
             }

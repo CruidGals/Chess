@@ -17,35 +17,35 @@ public class Bishop extends Piece
     {
         return 2;
     }
-    public static boolean checkBoardPiece(int sx, int sy, int ex, int ey)
+
+    public static boolean isValidMove(int startRow, int startCol, int endRow, int endCol)
     {
         boolean output = false;
         
-        
-        if(sx == ex)
+        if(Math.abs(startRow-endRow) != Math.abs(startCol-endCol))
         {
-            int direction = (ey-sy)/(Math.abs(sy-ey)); //Positive - up,right, Negative - down,left
-            output = true;
-            for(int i = 0; i < Math.abs(sy-ey) - 1; i++)
-            {
-                if(Board.board[sx][sy + direction * (i + 1)].getColor() != 0)
-                {
-                    output = false;
-                    break;
-                }
-            }
+            return output;
         }
-        if(sy == ey)
+
+        int yDirection = 0;
+
+        if(startRow > endRow) //If bishop is moving up
         {
-            int direction = (ex-sx)/(Math.abs(sx-ex)); //Positive - down,right, Negative - up,left
-            output = true;
-            for(int i = 0; i < Math.abs(sx-ex) - 1; i++)
+            yDirection = -1;
+        }
+        else if(startRow < endRow) //If bishop is moving down
+        {
+            yDirection = 1;
+        }
+
+        int direction = (endCol-startCol)/(Math.abs(startCol-endCol)); //Positive - right, Negative - left
+        output = true;
+        for(int i = 0; i < Math.abs(startCol-endCol) - 1; i++)
+        {
+            if(Board.board[startRow + yDirection * (i + 1)][startCol + direction * (i + 1)].getColor() != 0)
             {
-                if(Board.board[sx + direction * (i + 1)][sy].getColor() != 0)
-                {
-                    output = false;
-                    break;
-                }
+                output = false;
+                break;
             }
         }
         
