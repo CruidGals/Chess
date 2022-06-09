@@ -11,6 +11,8 @@ import java.awt.event.*;
  */
 public class Piece extends JPanel
 {    
+    private Square connectedSquare;
+
     private JPanel whitePiece = new JPanel();
     private JLabel whitePieceIcon = new JLabel();
     
@@ -22,9 +24,10 @@ public class Piece extends JPanel
     private CardLayout cards = new CardLayout();
     
     private int c; // (Color) -- 0 = no piece, 1 = whitePiece, 2 = blackPiece
-    public Piece(int color, String whitePieceName, String blackPieceName)
+    public Piece(int color, Square connectedSquare, String whitePieceName, String blackPieceName)
     {
        c = color;
+       this.connectedSquare = connectedSquare;
        setOpaque(false);
        setLayout(cards);
        
@@ -45,9 +48,10 @@ public class Piece extends JPanel
        updatePiece();
     }
     
-    public Piece(int color)
+    public Piece(int color, Square connectedSquare)
     {
         c = color;
+        this.connectedSquare = connectedSquare;
         setOpaque(false);
         setLayout(cards);
         
@@ -79,6 +83,11 @@ public class Piece extends JPanel
     public int getRank() 
     {
         return 0;
+    }
+
+    public Square getConnectedSquare()
+    {
+        return connectedSquare;
     }
     
     public static boolean isValidMove(int sx, int sy, int ex, int ey)

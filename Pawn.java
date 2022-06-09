@@ -7,9 +7,9 @@
  */
 public class Pawn extends Piece
 {
-    public Pawn(int color)
+    public Pawn(int color, Square square)
     {
-        super(color, "WhitePawn.png", "BlackPawn.png");
+        super(color, square, "WhitePawn.png", "BlackPawn.png");
     }
     
     @Override
@@ -18,7 +18,7 @@ public class Pawn extends Piece
         return 1;
     }
     
-    public static boolean isValidMove(int startRow, int startColumn, int endRow, int endCol)
+    public static boolean isValidMove(int startRow, int startCol, int endRow, int endCol)
     {
         boolean output = false;
         
@@ -28,7 +28,7 @@ public class Pawn extends Piece
             {
                 output = true;
             }
-            if(Math.abs(endCol-startColumn) == 1 && endRow == (startRow - 1) && Board.board[endRow][endCol].getColor() == 2)
+            if(Math.abs(endCol-startCol) == 1 && endRow == (startRow - 1) && Board.board[endRow][endCol].getColor() == 2)
             {
                 output = true;
             }
@@ -39,12 +39,49 @@ public class Pawn extends Piece
             {
                 output = true;
             }
-            if(Math.abs(endCol-startColumn) == 1 && endRow == (startRow - 1) && Board.board[endRow][endCol].getColor() == 1)
+            if(Math.abs(endCol-startCol) == 1 && endRow == (startRow - 1) && Board.board[endRow][endCol].getColor() == 1)
             {
                 output = true;
             }
         }
         
         return output;
+    }
+
+    public void togglePieceMoveOptions()
+    {
+        Square temp = getConnectedSquare();
+
+        int startRow = temp.getRow();
+        int startCol = temp.getCol();
+        int endRow = startRow;
+        int endCol = startCol;
+
+        if(Main.turn == 1)
+        {
+            endRow -= 1;
+            if(endRow == (startRow - 1) && Board.board[endRow][endCol].getColor() != 2) 
+            {
+                Board.board[endRow][endCol].toggleMoveOption();
+            }
+            if(Math.abs(endCol-startCol) == 1 && endRow == (startRow - 1) && Board.board[endRow][endCol].getColor() == 2)
+            {
+                Board.board[endRow][endCol + 1].toggleMoveOption();
+                Board.board[endRow][endCol - 1].toggleMoveOption();
+            }
+        }
+        else
+        {
+            endRow += 1;
+            if(endRow == (startRow + 1) && Board.board[endRow][endCol].getColor() != 1) 
+            {
+                Board.board[endRow][endCol].toggleMoveOption();
+            }
+            if(Math.abs(endCol-startCol) == 1 && endRow == (startRow - 1) && Board.board[endRow][endCol].getColor() == 1)
+            {
+                Board.board[endRow][endCol + 1].toggleMoveOption();
+                Board.board[endRow][endCol - 1].toggleMoveOption();
+            }
+        }
     }
 }

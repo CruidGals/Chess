@@ -1,4 +1,6 @@
 import javax.swing.*;
+import javax.swing.border.*;
+
 import java.awt.*;
 import java.awt.event.*;
 
@@ -16,6 +18,8 @@ public class Square extends JPanel
     private JPanel cardManager = new JPanel();
     private JPanel moveOptionPanel = new JPanel();
     private JLabel moveOptionIcon = new JLabel(new ImageIcon(getClass().getResource("resources/moveOption.png")));
+    private Border attackMoveOption = BorderFactory.createLineBorder(Color.red, 3);
+    private boolean showingMoveOption = false;
     
     private final int row; //Row
     private final int col; // Column
@@ -68,6 +72,11 @@ public class Square extends JPanel
         return p.getRank();
     }
 
+    public boolean isShowingMoveOption()
+    {
+        return showingMoveOption;
+    }
+
     public void setColor(int c)
     {
         p.setColor(c);
@@ -89,6 +98,50 @@ public class Square extends JPanel
             setBackground(new Color(238, 238, 213));
         }
     }
+
+    public void displayPossibleMoves()
+    {
+        if(p.getRank() == 1) {
+            System.out.println("here");
+            ((Pawn) p).togglePieceMoveOptions();
+        }
+    }
+
+    public static void hidePossibleMoves()
+    {
+        for(Square[] row : Board.board)
+        {
+            for(Square col : row)
+            {
+                if(col.isShowingMoveOption())
+                {
+                    col.toggleMoveOption();
+                }
+            }
+        }
+    }
+
+    public void toggleMoveOption()
+    {
+        if(!showingMoveOption)
+        {
+            if(p.getColor() > 0)
+            {
+                setBorder(attackMoveOption);
+            }
+            else
+            {
+                cards.show(cardManager, "MoveOption");
+            }
+            showingMoveOption = true;
+        }
+        else
+        {
+            setBorder(null);
+            cards.show(cardManager, "Piece");
+            showingMoveOption = false;
+        }
+    }
     
     private Piece getStartingPiece()
     {
@@ -104,29 +157,29 @@ public class Square extends JPanel
         
         if(row == 0 || row == 7) { //Checks if row is an end row
             switch(col) { //Creates piece based on starting position
-                case 0: piece = new Rook(color);
+                case 0: piece = new Rook(color, this);
                         break;
-                case 1: piece = new Knight(color);
+                case 1: piece = new Knight(color, this);
                         break;
-                case 2: piece = new Bishop(color);
+                case 2: piece = new Bishop(color, this);
                         break;
-                case 3: piece = new Queen(color);
+                case 3: piece = new Queen(color, this);
                         break;
-                case 4: piece = new King(color);
+                case 4: piece = new King(color, this);
                         break;
-                case 5: piece = new Bishop(color);
+                case 5: piece = new Bishop(color, this);
                         break;
-                case 6: piece = new Knight(color);
+                case 6: piece = new Knight(color, this);
                         break;
-                default: piece = new Rook(color);
+                default: piece = new Rook(color, this);
                         break;
             }
         }
         else if (row == 1 || row == 6) { //Checks if row is 2nd row from end row
-            piece = new Pawn(color);
+            piece = new Pawn(color, this);
         }
         else {
-            piece = new Piece(color);
+            piece = new Piece(color, this);
         }
         
         return piece;
@@ -148,6 +201,7 @@ public class Square extends JPanel
             if(squareSelected != null) 
             {
                 squareSelected.setGameBackground();
+                hidePossibleMoves();
             }
             
             if(squareSelected != temp && temp.getColor() > 0)
@@ -155,6 +209,7 @@ public class Square extends JPanel
                 if(Main.turn == temp.getColor())
                 {
                     colorSquare(temp);
+                    temp.displayPossibleMoves();
                 }
             }
             

@@ -7,9 +7,9 @@
  */
 public class Queen extends Piece
 {
-    public Queen(int color)
+    public Queen(int color, Square square)
     {
-        super(color, "WhiteQueen.png", "BlackQueen.png");
+        super(color, square, "WhiteQueen.png", "BlackQueen.png");
     }
     
     @Override

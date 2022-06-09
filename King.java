@@ -7,9 +7,9 @@
  */
 public class King extends Piece
 {
-    public King(int color)
+    public King(int color, Square square)
     {
-        super(color, "WhiteKing.png", "BlackKing.png");
+        super(color, square, "WhiteKing.png", "BlackKing.png");
         
     }
     
