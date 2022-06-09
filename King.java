@@ -9,7 +9,7 @@ public class King extends Piece
 {
     public King(int color)
     {
-        super(color, "King.png", "BlackKing.png");
+        super(color, "WhiteKing.png", "BlackKing.png");
         
     }
     
