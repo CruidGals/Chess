@@ -23,8 +23,7 @@ public class Square extends JPanel
         
         p = getStartingPiece();
         setGameBackground();
-        
-        setLayout(new GridLayout(1,1));
+
         add(p);
 
         addMouseListener(new ClickListener());
@@ -50,7 +49,11 @@ public class Square extends JPanel
     {
         return p.getRank();
     }
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> 3c3932583d237f5284774ad0be7229c8b7857f89
     public void setColor(int c)
     {
         p.setColor(c);
@@ -84,6 +87,8 @@ public class Square extends JPanel
         } else {
             color = 0; //No Piece
         }
+
+        System.out.print(color + " ");
         
         if(row == 0 || row == 7) { //Checks if row is an end row
             switch(col) { //Creates piece based on starting position
@@ -118,7 +123,10 @@ public class Square extends JPanel
 
     public void reset()
     {
+<<<<<<< HEAD
 
+=======
+>>>>>>> 3c3932583d237f5284774ad0be7229c8b7857f89
         this.setColor(0);
     }
 

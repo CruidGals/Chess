@@ -30,18 +30,19 @@ public class Piece extends JPanel
        
        whitePiece.setOpaque(false);
        whitePiece.add(whitePieceIcon);
-       whitePieceIcon.setIcon(new ImageIcon(whitePieceName));
+       whitePieceIcon.setIcon(new ImageIcon(getClass().getResource("resources/" + whitePieceName)));
        
        blackPiece.setOpaque(false);
        blackPiece.add(blackPieceIcon);
-       blackPieceIcon.setIcon(new ImageIcon(blackPieceName));
+       blackPieceIcon.setIcon(new ImageIcon(getClass().getResource("resources/" + blackPieceName)));
        
        noPiece.setOpaque(false);
-       updatePiece();
        
        add(whitePiece, "White");
        add(blackPiece, "Black");
        add(noPiece, "None");
+
+       updatePiece();
     }
     
     public Piece(int color)
