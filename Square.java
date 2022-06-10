@@ -119,7 +119,6 @@ public class Square extends JPanel
         if(p.getRank() == 1) {
             ((Pawn) p).togglePieceMoveOptions();
         } else if (p.getRank() == 3) {
-            System.out.println("here");
             ((Knight) p).togglePieceMoveOptions();
         }
     }
@@ -228,7 +227,7 @@ public class Square extends JPanel
                     Main.endSquare = temp;
                 }
             }
-            
+ 
             if(squareSelected != temp && temp.getColor() > 0)
             {
                 if(Main.turn == temp.getColor())
@@ -242,7 +241,7 @@ public class Square extends JPanel
                     Main.startSquare = null;
                 }
             }
-            
+
             if(squareSelected == temp)
             {
                 squareSelected = null;
@@ -256,7 +255,7 @@ public class Square extends JPanel
             {
                 Main.move();
             }
-            
+
             //DEBUG OPTION
             if(SwingUtilities.isRightMouseButton(e))
             {

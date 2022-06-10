@@ -21,7 +21,11 @@ public class King extends Piece
 
     public static boolean isValidMove(int startRow, int startCol, int endRow, int endCol)
     {
-        return true;
+        if(Math.abs(endRow - startRow) <= 1 && Math.abs(endCol - startCol) <= 1)
+        {
+            return true;
+        }
+        return false;
         //King can move anywhere for now
         //Will implement a "check" / "checkmate" function later which will change this code
     }

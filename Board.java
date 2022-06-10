@@ -83,9 +83,15 @@ public class Board extends JFrame
     public boolean move(int turn, int sx, int sy, int ex, int ey)
     {
         boolean bruh = isMoveValid(turn, sx, sy, ex, ey);
-        if(isMoveValid(turn, sx, sy, ex, ey))
+        if(bruh)
         {
             Piece temp = board[ex][ey].getPiece();
+            
+            if(board[sx][sy].getRank() == 1)
+            {
+                ((Pawn) Board.board[sx][sy].getPiece()).turnOffDoubleMove();
+            }
+            
             board[ex][ey].setP(board[sx][sy].getPiece());
             board[ex][ey].getPiece().setConnectedSquare(board[ex][ey]);
             board[sx][sy].setP(temp);

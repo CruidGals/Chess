@@ -7,6 +7,7 @@
  */
 public class Pawn extends Piece
 {
+    private boolean isDoubleMove = true;
     public Pawn(int color, Square square)
     {
         super(color, square, "WhitePawn.png", "BlackPawn.png");
@@ -18,16 +19,40 @@ public class Pawn extends Piece
         return 1;
     }
     
+    public boolean hasDoubleMove()
+    {
+        return isDoubleMove;
+    }
+    
+    public void turnOffDoubleMove()
+    {
+        isDoubleMove = false;
+    }
+    
     public static boolean isValidMove(int startRow, int startCol, int endRow, int endCol)
     {
         boolean output = false;
         
+        boolean isDoubleMove = ((Pawn) Board.board[startRow][startCol].getPiece()).hasDoubleMove();
+        
         if(Main.turn == 1)
         {
-            if((Math.abs(endCol-startCol) == 0 && endRow == (startRow - 1)) && Board.board[endRow][endCol].getColor() == 0) 
+            if((endCol-startCol == 0 && Math.abs(endRow - startRow) <= 2) && Board.board[endRow][endCol].getColor() == 0) 
             {
                 output = true;
+                if(Math.abs(endRow - startRow) == 2) //Checks if double move is possible
+                {
+                    if(!isDoubleMove)
+                    {
+                        output = false;
+                    }
+                    if(Board.board[endRow + 1][endCol].getColor() != 0)
+                    {
+                        output = false;
+                    }
+                }
             }
+            
             if((Math.abs(endCol-startCol) == 1 && endRow == (startRow - 1)) && Board.board[endRow][endCol].getColor() == 2)
             {
                 output = true;
@@ -35,9 +60,20 @@ public class Pawn extends Piece
         }
         else
         {
-            if((Math.abs(endCol-startCol) == 0 && endRow == (startRow + 1)) && Board.board[endRow][endCol].getColor() == 0) 
+            if((endCol-startCol == 0 && Math.abs(endRow - startRow) <= 2) && Board.board[endRow][endCol].getColor() == 0) 
             {
                 output = true;
+                if(Math.abs(endRow - startRow) == 2)//Checks if double move is possible
+                {
+                    if(!isDoubleMove)
+                    {
+                        output = false;
+                    }
+                    if(Board.board[endRow - 1][endCol].getColor() != 0)
+                    {
+                        output = false;
+                    }
+                }
             }
             if(Math.abs(endCol-startCol) == 1 && endRow == (startRow + 1) && Board.board[endRow][endCol].getColor() == 1)
             {
@@ -64,11 +100,15 @@ public class Pawn extends Piece
             {
                 Board.board[endRow][endCol].toggleMoveOption();
             }
-            if(Board.board[endRow][endCol + 1].getColor() == 2)
+            if(Board.board[endRow - 1][endCol].getColor() == 0 && isDoubleMove && Board.board[endRow][endCol].getColor() == 0) 
+            {
+                Board.board[endRow - 1][endCol].toggleMoveOption();
+            }
+            if(Board.withinBoard(startRow, startCol, endRow, endCol + 1) && Board.board[endRow][endCol + 1].getColor() == 2)
             {
                 Board.board[endRow][endCol + 1].toggleMoveOption();
             }
-            if(Board.board[endRow][endCol - 1].getColor() == 2)
+            if(Board.withinBoard(startRow, startCol, endRow, endCol - 1) && Board.board[endRow][endCol - 1].getColor() == 2)
             {
                 Board.board[endRow][endCol - 1].toggleMoveOption();
             }
@@ -80,11 +120,15 @@ public class Pawn extends Piece
             {
                 Board.board[endRow][endCol].toggleMoveOption();
             }
-            if(Board.board[endRow][endCol + 1].getColor() == 1)
+            if(Board.board[endRow + 1][endCol].getColor() == 0 && isDoubleMove && Board.board[endRow][endCol].getColor() == 0) 
+            {
+                Board.board[endRow + 1][endCol].toggleMoveOption();
+            }
+            if(Board.withinBoard(startRow, startCol, endRow, endCol + 1) && Board.board[endRow][endCol + 1].getColor() == 1)
             {
                 Board.board[endRow][endCol + 1].toggleMoveOption();
             }
-            if(Board.board[endRow][endCol - 1].getColor() == 1)
+            if(Board.withinBoard(startRow, startCol, endRow, endCol - 1) && (Board.board[endRow][endCol - 1].getColor() == 1))
             {
                 Board.board[endRow][endCol - 1].toggleMoveOption();
             }
