@@ -89,49 +89,45 @@ public class Pawn extends Piece
     {
         Square temp = getConnectedSquare();
 
-        int startRow = temp.getRow();
-        int startCol = temp.getCol();
-        int endRow = startRow;
-        int endCol = startCol;
+        int row = temp.getRow();
+        int col = temp.getCol();
 
         if(Main.turn == 1)
         {
-            endRow -= 1;
-            if(Board.board[endRow][endCol].getColor() == 0) 
+            if(Board.board[row - 1][col].getColor() == 0) 
             {
-                Board.board[endRow][endCol].toggleMoveOption();
+                Board.board[row - 1][col].toggleMoveOption();
+                if(Board.board[row - 2][col].getColor() == 0 && isDoubleMove) 
+                {
+                    Board.board[row - 2][col].toggleMoveOption();
+                }
             }
-            if(Board.board[endRow - 1][endCol].getColor() == 0 && isDoubleMove && Board.board[endRow][endCol].getColor() == 0) 
+            if(Board.withinBoard(row, col, row - 1, col + 1) && Board.board[row - 1][col + 1].getColor() == 2)
             {
-                Board.board[endRow - 1][endCol].toggleMoveOption();
+                Board.board[row - 1][col + 1].toggleMoveOption();
             }
-            if(Board.withinBoard(startRow, startCol, endRow, endCol + 1) && Board.board[endRow][endCol + 1].getColor() == 2)
+            if(Board.withinBoard(row, col, row - 1, col - 1) && Board.board[row - 1][col - 1].getColor() == 2)
             {
-                Board.board[endRow][endCol + 1].toggleMoveOption();
-            }
-            if(Board.withinBoard(startRow, startCol, endRow, endCol - 1) && Board.board[endRow][endCol - 1].getColor() == 2)
-            {
-                Board.board[endRow][endCol - 1].toggleMoveOption();
+                Board.board[row - 1][col - 1].toggleMoveOption();
             }
         }
         else
         {
-            endRow += 1;
-            if(Board.board[endRow][endCol].getColor() == 0) 
+            if(Board.board[row + 1][col].getColor() == 0) 
             {
-                Board.board[endRow][endCol].toggleMoveOption();
+                Board.board[row + 1][col].toggleMoveOption();
+                if(Board.board[row + 2][col].getColor() == 0 && isDoubleMove) 
+                {
+                    Board.board[row + 2][col].toggleMoveOption();
+                }
             }
-            if(Board.board[endRow + 1][endCol].getColor() == 0 && isDoubleMove && Board.board[endRow][endCol].getColor() == 0) 
+            if(Board.withinBoard(row, col, row + 1, col + 1) && Board.board[row + 1][col + 1].getColor() == 1)
             {
-                Board.board[endRow + 1][endCol].toggleMoveOption();
+                Board.board[row + 1][col + 1].toggleMoveOption();
             }
-            if(Board.withinBoard(startRow, startCol, endRow, endCol + 1) && Board.board[endRow][endCol + 1].getColor() == 1)
+            if(Board.withinBoard(row, col, row + 1, col - 1) && (Board.board[row + 1][col - 1].getColor() == 1))
             {
-                Board.board[endRow][endCol + 1].toggleMoveOption();
-            }
-            if(Board.withinBoard(startRow, startCol, endRow, endCol - 1) && (Board.board[endRow][endCol - 1].getColor() == 1))
-            {
-                Board.board[endRow][endCol - 1].toggleMoveOption();
+                Board.board[row + 1][col - 1].toggleMoveOption();
             }
         }
     }

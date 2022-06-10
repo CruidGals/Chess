@@ -35,39 +35,39 @@ public class Knight extends Piece
     {
         Square temp = getConnectedSquare();
 
-        int startRow = temp.getRow();
-        int startCol = temp.getCol();
+        int row = temp.getRow();
+        int col = temp.getCol();
         
-        if(Board.withinBoard(startRow, startCol, startRow, startCol - 2)) { //Checks for space left of piece
-            if(Board.withinBoard(startRow, startCol, startRow + 1, startCol - 2)) { //Checks for space below piece
-                Board.board[startRow + 1][startCol - 2].toggleMoveOption();
+        if(Board.withinBoard(row, col, row, col - 2)) { //Checks for space left of piece
+            if(Board.withinBoard(row, col, row + 1, col - 2)) { //Checks for space below piece
+                Board.board[row + 1][col - 2].toggleMoveOption();
             }
-            if(Board.withinBoard(startRow, startCol, startRow - 1, startCol - 2)) { //Checks for space above piece
-                Board.board[startRow - 1][startCol - 2].toggleMoveOption();
-            }
-        }
-        if(Board.withinBoard(startRow, startCol, startRow, startCol + 2)) { //Checks for space right of piece
-            if(Board.withinBoard(startRow, startCol, startRow + 1, startCol + 2)) { //Checks for space below piece
-                Board.board[startRow + 1][startCol + 2].toggleMoveOption();
-            }
-            if(Board.withinBoard(startRow, startCol, startRow - 1, startCol + 2)) { //Checks for space above piece
-                Board.board[startRow - 1][startCol + 2].toggleMoveOption();
+            if(Board.withinBoard(row, col, row - 1, col - 2)) { //Checks for space above piece
+                Board.board[row - 1][col - 2].toggleMoveOption();
             }
         }
-        if(Board.withinBoard(startRow, startCol, startRow - 2, startCol)) { //Checks for space below piece
-            if(Board.withinBoard(startRow, startCol, startRow - 2, startCol + 1)) { //Checks for space right of piece
-                Board.board[startRow - 2][startCol + 1].toggleMoveOption();
+        if(Board.withinBoard(row, col, row, col + 2)) { //Checks for space right of piece
+            if(Board.withinBoard(row, col, row + 1, col + 2)) { //Checks for space below piece
+                Board.board[row + 1][col + 2].toggleMoveOption();
             }
-            if(Board.withinBoard(startRow, startCol, startRow - 2, startCol - 1)) { //Checks for space left of piece
-                Board.board[startRow - 2][startCol - 1].toggleMoveOption();
+            if(Board.withinBoard(row, col, row - 1, col + 2)) { //Checks for space above piece
+                Board.board[row - 1][col + 2].toggleMoveOption();
             }
         }
-        if(Board.withinBoard(startRow, startCol, startRow + 2, startCol)) { //Checks for space above piece
-            if(Board.withinBoard(startRow, startCol, startRow + 2, startCol + 1)) { //Checks for space right of piece
-                Board.board[startRow + 2][startCol + 1].toggleMoveOption();
+        if(Board.withinBoard(row, col, row - 2, col)) { //Checks for space below piece
+            if(Board.withinBoard(row, col, row - 2, col + 1)) { //Checks for space right of piece
+                Board.board[row - 2][col + 1].toggleMoveOption();
             }
-            if(Board.withinBoard(startRow, startCol, startRow + 2, startCol - 1)) { //Checks for space left of piece
-                Board.board[startRow + 2][startCol - 1].toggleMoveOption();
+            if(Board.withinBoard(row, col, row - 2, col - 1)) { //Checks for space left of piece
+                Board.board[row - 2][col - 1].toggleMoveOption();
+            }
+        }
+        if(Board.withinBoard(row, col, row + 2, col)) { //Checks for space above piece
+            if(Board.withinBoard(row, col, row + 2, col + 1)) { //Checks for space right of piece
+                Board.board[row + 2][col + 1].toggleMoveOption();
+            }
+            if(Board.withinBoard(row, col, row + 2, col - 1)) { //Checks for space left of piece
+                Board.board[row + 2][col - 1].toggleMoveOption();
             }
         }
     }
