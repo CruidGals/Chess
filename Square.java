@@ -71,6 +71,11 @@ public class Square extends JPanel
     {
         return p.getRank();
     }
+    
+    public void setP(Piece v)
+    {
+        p = v;
+    } 
 
     public boolean isShowingMoveOption()
     {
