@@ -1,4 +1,4 @@
-
+import java.awt.*;
 /**
  * Write a description of class Pawn here.
  *
@@ -11,6 +11,7 @@ public class Pawn extends Piece
     public Pawn(int color, Square square)
     {
         super(color, square, "WhitePawn.png", "BlackPawn.png");
+        setCursor(new Cursor(Cursor.HAND_CURSOR));
     }
     
     @Override

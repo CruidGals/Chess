@@ -1,4 +1,4 @@
-
+import java.awt.*;
 /**
  * Write a description of class Queen here.
  *
@@ -10,6 +10,7 @@ public class Queen extends Piece
     public Queen(int color, Square square)
     {
         super(color, square, "WhiteQueen.png", "BlackQueen.png");
+        setCursor(new Cursor(Cursor.HAND_CURSOR));
     }
     
     @Override

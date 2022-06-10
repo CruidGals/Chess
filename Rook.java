@@ -1,4 +1,4 @@
-
+import java.awt.*;
 /**
  * Write a description of class Rook here.
  *
@@ -10,6 +10,7 @@ public class Rook extends Piece
     public Rook(int color, Square square)
     {
         super(color, square, "WhiteRook.png", "BlackRook.png");
+        setCursor(new Cursor(Cursor.HAND_CURSOR));
     }
     
     @Override

@@ -1,4 +1,4 @@
-
+import java.awt.*;
 /**
  * Write a description of class Bishop here.
  *
@@ -10,6 +10,7 @@ public class Bishop extends Piece
     public Bishop(int color, Square square)
     {
         super(color, square, "WhiteBishop.png", "BlackBishop.png");
+        setCursor(new Cursor(Cursor.HAND_CURSOR));
     }
     
     @Override

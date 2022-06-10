@@ -41,6 +41,7 @@ public class Square extends JPanel
 
         moveOptionPanel.setOpaque(false);
         moveOptionPanel.add(moveOptionIcon);
+        moveOptionPanel.setCursor(new Cursor(Cursor.HAND_CURSOR));
 
         cardManager.add(p, "Piece");
         cardManager.add(moveOptionPanel, "MoveOption");

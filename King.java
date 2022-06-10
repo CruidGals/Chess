@@ -1,4 +1,4 @@
-
+import java.awt.*;
 /**
  * Write a description of class King here.
  *
@@ -10,7 +10,7 @@ public class King extends Piece
     public King(int color, Square square)
     {
         super(color, square, "WhiteKing.png", "BlackKing.png");
-        
+        setCursor(new Cursor(Cursor.HAND_CURSOR));
     }
     
     @Override
