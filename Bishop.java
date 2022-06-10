@@ -51,4 +51,24 @@ public class Bishop extends Piece
         
         return output;
     }
+
+    public void togglePieceMoveOptions()
+    {
+        Square temp = getConnectedSquare();
+
+        int startRow = temp.getRow();
+        int startCol = temp.getCol();
+
+        int endRow = startRow;
+        int endCol = startCol;
+
+        for(int i = -1; i <= 1; i += 2) { //Checks up diagonals first, then down diagonals
+            for(int j = -1; j <= 1; j += 2) { //Checks left then right
+                int increment = 1;
+                while(Board.withinBoard(startRow, startCol, endRow + i * increment, endCol + j * increment)) {
+                    if()
+                }
+            }
+        }
+    }
 }
