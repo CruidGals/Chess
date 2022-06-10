@@ -9,7 +9,7 @@ import java.awt.event.*;
  * @author (your name)
  * @version (a version number or a date)
  */
-public class Piece extends JPanel
+public class Piece extends JPanel implements Cloneable
 {    
     private Square connectedSquare;
 
@@ -33,11 +33,11 @@ public class Piece extends JPanel
        
        whitePiece.setOpaque(false);
        whitePiece.add(whitePieceIcon);
-       whitePieceIcon.setIcon(new ImageIcon(getClass().getResource("resources/" + whitePieceName)));
+       whitePieceIcon.setIcon(new ImageIcon("resources/" + whitePieceName));
        
        blackPiece.setOpaque(false);
        blackPiece.add(blackPieceIcon);
-       blackPieceIcon.setIcon(new ImageIcon(getClass().getResource("resources/" + blackPieceName)));
+       blackPieceIcon.setIcon(new ImageIcon("resources/" + blackPieceName));
        
        noPiece.setOpaque(false);
        
@@ -61,11 +61,11 @@ public class Piece extends JPanel
         blackPiece.add(blackPieceIcon);
         noPiece.setOpaque(false);
         
-        updatePiece();
-        
         add(whitePiece, "White");
         add(blackPiece, "Black");
         add(noPiece, "None");
+
+        updatePiece();
     }
     
     public int getColor() {
@@ -88,6 +88,11 @@ public class Piece extends JPanel
     public Square getConnectedSquare()
     {
         return connectedSquare;
+    }
+
+    public void setConnectedSquare(Square sq)
+    {
+        connectedSquare = sq;
     }
     
     public static boolean isValidMove(int sx, int sy, int ex, int ey)

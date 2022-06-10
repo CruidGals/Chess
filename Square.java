@@ -218,6 +218,11 @@ public class Square extends JPanel
             {
                 squareSelected.setGameBackground();
                 hidePossibleMoves();
+
+                if(temp.getColor() != Main.turn && Main.startSquare != null)
+                {
+                    Main.endSquare = temp;
+                }
             }
             
             if(squareSelected != temp && temp.getColor() > 0)
@@ -226,6 +231,11 @@ public class Square extends JPanel
                 {
                     colorSquare(temp);
                     temp.displayPossibleMoves();
+                    Main.startSquare = temp;
+                }
+                else if(Main.endSquare == null)
+                {
+                    Main.startSquare = null;
                 }
             }
             
@@ -237,6 +247,12 @@ public class Square extends JPanel
             {
                 squareSelected = temp;
             }
+
+            if(Main.startSquare != null && Main.endSquare != null)
+            {
+                Main.move();
+            }
+            
             //DEBUG OPTION
             if(SwingUtilities.isRightMouseButton(e))
             {

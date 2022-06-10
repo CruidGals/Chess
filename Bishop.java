@@ -66,7 +66,7 @@ public class Bishop extends Piece
             for(int j = -1; j <= 1; j += 2) { //Checks left then right
                 int increment = 1;
                 while(Board.withinBoard(startRow, startCol, endRow + i * increment, endCol + j * increment)) {
-                    if()
+                    //if()
                 }
             }
         }
