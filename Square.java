@@ -74,7 +74,11 @@ public class Square extends JPanel
     
     public void setP(Piece v)
     {
+        remove(p);
         p = v;
+        cardManager.add(p, "Piece");
+        cardManager.revalidate();
+        cards.show(cardManager, "Piece");
     } 
 
     public boolean isShowingMoveOption()
@@ -112,9 +116,9 @@ public class Square extends JPanel
 
     public void displayPossibleMoves()
     {
-        if(p instanceof Pawn) {
+        if(p.getRank() == 1) {
             ((Pawn) p).togglePieceMoveOptions();
-        } else if (p instanceof Knight) {
+        } else if (p.getRank() == 3) {
             System.out.println("here");
             ((Knight) p).togglePieceMoveOptions();
         }
