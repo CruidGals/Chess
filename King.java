@@ -29,4 +29,23 @@ public class King extends Piece
         //King can move anywhere for now
         //Will implement a "check" / "checkmate" function later which will change this code
     }
+
+    public void togglePieceMoveOptions()
+    {
+        Square temp = getConnectedSquare();
+
+        int row = temp.getRow();
+        int col = temp.getCol();
+
+        for(int i = -1; i <= 1; i++)
+        {
+            for(int j = -1; j <= 1; j++)
+            {
+                if(Board.withinBoard(row, col, row + i, col + j) && Board.board[row + i][col + j].getColor() != Main.turn)
+                {
+                    Board.board[row + i][col + j].toggleMoveOption();
+                }
+            }
+        }
+    }
 }

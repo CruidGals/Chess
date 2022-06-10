@@ -126,6 +126,8 @@ public class Square extends JPanel
             ((Rook) p).togglePieceMoveOptions();
         } else if(p.getRank() == 5) {
             ((Queen) p).togglePieceMoveOptions();
+        } else if(p.getRank() == 6) {
+            ((King) p).togglePieceMoveOptions();
         }
     }
 
