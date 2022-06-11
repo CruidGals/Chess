@@ -250,12 +250,6 @@ public class Square extends JPanel
         return piece;
     }
 
-
-    public void reset()
-    {
-        this.setColor(0);
-    }
-
     private class ClickListener extends MouseAdapter
     {
         @Override

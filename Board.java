@@ -88,6 +88,7 @@ public class Board extends JFrame
         if(bruh)
         {
             Piece temp = board[ex][ey].getPiece();
+            Board.board[sx][sy].getPiece().togglePieceMoveOptions(true);
             
             if(board[sx][sy].getRank() == 1)
             {
@@ -99,8 +100,9 @@ public class Board extends JFrame
             board[sx][sy].setP(temp);
             board[sx][sy].setP(new Piece(0, board[sx][sy]));
             
-            board[ex][ey].getPiece().updatePiece();
-            board[sx][sy].getPiece().updatePiece();
+            board[ex][ey].getPiece().updatePieceUI();
+            Board.board[ex][ey].getPiece().togglePieceMoveOptions(true);
+            board[sx][sy].getPiece().updatePieceUI();
         }
         return bruh;
     }
@@ -114,9 +116,7 @@ public class Board extends JFrame
     {
         for(Square[] row : board) {
             for(Square col : row) {
-                if(col.getPiece().getRank() == 1) {
-                    ((Pawn) col.getPiece()).togglePieceMoveOptions(true);
-                }
+                col.getPiece().togglePieceMoveOptions(true);
             }
         }
     }

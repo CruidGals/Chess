@@ -43,7 +43,7 @@ public class Piece extends JPanel implements Cloneable
        add(blackPiece, "Black");
        add(noPiece, "None");
 
-       updatePiece();
+       updatePieceUI();
     }
     
     public Piece(int color, Square connectedSquare)
@@ -63,7 +63,7 @@ public class Piece extends JPanel implements Cloneable
         add(blackPiece, "Black");
         add(noPiece, "None");
 
-        updatePiece();
+        updatePieceUI();
     }
     
     public int getColor() {
@@ -98,7 +98,9 @@ public class Piece extends JPanel implements Cloneable
         return false;
     }
 
-    public void updatePiece()
+    public void togglePieceMoveOptions(boolean checkAttack) {} //Abstract function : Meant to be overridable
+
+    public void updatePieceUI()
     {
         if(c == 1)
         {

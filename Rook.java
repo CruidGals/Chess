@@ -53,6 +53,7 @@ public class Rook extends Piece
         return output;
     }
     
+    @Override
     public void togglePieceMoveOptions(boolean checkAttack)
     {
         Square temp = getConnectedSquare();

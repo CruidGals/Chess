@@ -32,6 +32,7 @@ public class King extends Piece
         //Will implement a "check" / "checkmate" function later which will change this code
     }
 
+    @Override
     public void togglePieceMoveOptions(boolean checkAttack)
     {
         Square temp = getConnectedSquare();

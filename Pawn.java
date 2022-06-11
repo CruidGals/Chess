@@ -85,6 +85,8 @@ public class Pawn extends Piece
         
         return output;
     }
+    
+    @Override
     /**
      * Method has two functions (function toggled by the parameter) It can:
      *  - Highlight the possible spaces the pawn can go

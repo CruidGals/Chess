@@ -31,6 +31,7 @@ public class Knight extends Piece
         return output;
     }
 
+    @Override
     public void togglePieceMoveOptions(boolean checkAttack) //Probably a better way to do this
     {
         Square temp = getConnectedSquare();
