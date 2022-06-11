@@ -67,6 +67,7 @@ public class Bishop extends Piece
                 while(Board.withinBoard(row, col, row + i * increment, col + j * increment) &&
                       Board.board[row + i * increment][col + j * increment].getColor() != Main.turn) {
                     if(!checkAttack) Board.board[row + i * increment][col + j * increment].toggleMoveOption();
+                    else Board.board[row + i * increment][col + 1].setCheckedByColor(getColor());
                     
                     if(Board.board[row + i * increment][col + j * increment].getColor() > 0)
                     {

@@ -88,7 +88,6 @@ public class Board extends JFrame
         if(bruh)
         {
             Piece temp = board[ex][ey].getPiece();
-            Board.board[sx][sy].getPiece().togglePieceMoveOptions(true);
             
             if(board[sx][sy].getRank() == 1)
             {
@@ -97,12 +96,13 @@ public class Board extends JFrame
             
             board[ex][ey].setP(board[sx][sy].getPiece());
             board[ex][ey].getPiece().setConnectedSquare(board[ex][ey]);
+            clearAttackableSpaces();
             board[sx][sy].setP(temp);
             board[sx][sy].setP(new Piece(0, board[sx][sy]));
             
             board[ex][ey].getPiece().updatePieceUI();
-            Board.board[ex][ey].getPiece().togglePieceMoveOptions(true);
             board[sx][sy].getPiece().updatePieceUI();
+            updateAttackableSpaces();
         }
         return bruh;
     }
@@ -117,6 +117,17 @@ public class Board extends JFrame
         for(Square[] row : board) {
             for(Square col : row) {
                 col.getPiece().togglePieceMoveOptions(true);
+                System.out.print(col.getRank() + " ");
+            }
+            System.out.println();
+        }
+    }
+
+    public void clearAttackableSpaces()
+    {
+        for(Square[] row : board) {
+            for(Square col : row) {
+                col.clearCheckedByColor();
             }
         }
     }

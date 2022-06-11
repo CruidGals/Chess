@@ -102,21 +102,19 @@ public class Square extends JPanel
         return false;
     }
 
-    public void setCheckedByColor(int color, boolean addCheckedSpace)
+    public void setCheckedByColor(int color)
     {
         if(color == 1) {
-            if(addCheckedSpace) {
-                timesCheckedByWhite++;
-            } else {
-                timesCheckedByWhite--;
-            }
+            timesCheckedByWhite++;
         } else if (color == 2) {
-            if(addCheckedSpace) {
-                timesCheckedByBlack++;
-            } else {
-                timesCheckedByBlack--;
-            }
+            timesCheckedByBlack++;
         }
+    }
+
+    public void clearCheckedByColor()
+    {
+        timesCheckedByBlack = 0;
+        timesCheckedByWhite = 0;
     }
 
     public void setP(Piece v)

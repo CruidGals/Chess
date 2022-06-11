@@ -8,7 +8,7 @@ import java.awt.*;
 public class Pawn extends Piece
 {
     private boolean isDoubleMove = true;
-    private boolean showingAttackOptions = false;
+
     public Pawn(int color, Square square)
     {
         super(color, square, "WhitePawn.png", "BlackPawn.png");
@@ -118,11 +118,7 @@ public class Pawn extends Piece
             if(!checkAttack) {
                 if(Board.board[row + 1 * direction][col + 1].getColor() == 2) Board.board[row + 1 * direction][col + 1].toggleMoveOption();
             } else {
-                if(direction == -1) {
-                    Board.board[row + 1 * direction][col + 1].setCheckedByColor(1, !showingAttackOptions);
-                } else {
-                    Board.board[row + 1 * direction][col + 1].setCheckedByColor(2, !showingAttackOptions);
-                }
+                Board.board[row + 1 * direction][col + 1].setCheckedByColor(getColor());
             }
         }
         if(Board.withinBoard(row, col, row + 1 * direction, col - 1))
@@ -130,16 +126,11 @@ public class Pawn extends Piece
             if(!checkAttack) {
                 if(Board.board[row + 1 * direction][col - 1].getColor() == 2) Board.board[row + 1 * direction][col - 1].toggleMoveOption();
             } else {
-                if(direction == -1) {
-                    Board.board[row + 1 * direction][col - 1].setCheckedByColor(1, !showingAttackOptions);
-                } else {
-                    Board.board[row + 1 * direction][col - 1].setCheckedByColor(2, !showingAttackOptions);
-                }
+                Board.board[row + 1 * direction][col - 1].setCheckedByColor(getColor());
             }
         }
     
 
-        if(checkAttack) showingAttackOptions = !showingAttackOptions;
     }
 
 
