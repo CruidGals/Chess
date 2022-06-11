@@ -7,6 +7,8 @@ import java.awt.*;
  */
 public class King extends Piece
 {
+    private boolean isChecked = false;
+    
     public King(int color, Square square)
     {
         super(color, square, "WhiteKing.png", "BlackKing.png");
@@ -30,7 +32,7 @@ public class King extends Piece
         //Will implement a "check" / "checkmate" function later which will change this code
     }
 
-    public void togglePieceMoveOptions()
+    public void togglePieceMoveOptions(boolean checkAttack)
     {
         Square temp = getConnectedSquare();
 
@@ -43,7 +45,7 @@ public class King extends Piece
             {
                 if(Board.withinBoard(row, col, row + i, col + j) && Board.board[row + i][col + j].getColor() != Main.turn)
                 {
-                    Board.board[row + i][col + j].toggleMoveOption();
+                    if(!checkAttack) Board.board[row + i][col + j].toggleMoveOption();
                 }
             }
         }

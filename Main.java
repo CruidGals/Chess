@@ -1,7 +1,4 @@
 import javax.swing.*; //for making windows (Jframe, JPanel)
-import java.awt.*; //for color
-import java.util.*;
-import java.awt.event.*;
 /**
  * Write a description of class Main here.
  *
@@ -21,9 +18,6 @@ public class Main
         game.setSize(900,900);
         game.setResizable(false);
         game.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        int gameWon = 0;
-        boolean valid;
 
         game.setVisible(true);
     }

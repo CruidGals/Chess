@@ -31,7 +31,7 @@ public class Knight extends Piece
         return output;
     }
 
-    public void togglePieceMoveOptions() //Probably a better way to do this
+    public void togglePieceMoveOptions(boolean checkAttack) //Probably a better way to do this
     {
         Square temp = getConnectedSquare();
 
@@ -40,34 +40,34 @@ public class Knight extends Piece
         
         if(Board.withinBoard(row, col, row, col - 2)) { //Checks for space left of piece
             if(Board.withinBoard(row, col, row + 1, col - 2)) { //Checks for space below piece
-                Board.board[row + 1][col - 2].toggleMoveOption();
+                if(!checkAttack) Board.board[row + 1][col - 2].toggleMoveOption();
             }
             if(Board.withinBoard(row, col, row - 1, col - 2)) { //Checks for space above piece
-                Board.board[row - 1][col - 2].toggleMoveOption();
+                if(!checkAttack) Board.board[row - 1][col - 2].toggleMoveOption();
             }
         }
         if(Board.withinBoard(row, col, row, col + 2)) { //Checks for space right of piece
             if(Board.withinBoard(row, col, row + 1, col + 2)) { //Checks for space below piece
-                Board.board[row + 1][col + 2].toggleMoveOption();
+                if(!checkAttack) Board.board[row + 1][col + 2].toggleMoveOption();
             }
             if(Board.withinBoard(row, col, row - 1, col + 2)) { //Checks for space above piece
-                Board.board[row - 1][col + 2].toggleMoveOption();
+                if(!checkAttack) Board.board[row - 1][col + 2].toggleMoveOption();
             }
         }
         if(Board.withinBoard(row, col, row - 2, col)) { //Checks for space below piece
             if(Board.withinBoard(row, col, row - 2, col + 1)) { //Checks for space right of piece
-                Board.board[row - 2][col + 1].toggleMoveOption();
+                if(!checkAttack) Board.board[row - 2][col + 1].toggleMoveOption();
             }
             if(Board.withinBoard(row, col, row - 2, col - 1)) { //Checks for space left of piece
-                Board.board[row - 2][col - 1].toggleMoveOption();
+                if(!checkAttack) Board.board[row - 2][col - 1].toggleMoveOption();
             }
         }
         if(Board.withinBoard(row, col, row + 2, col)) { //Checks for space above piece
             if(Board.withinBoard(row, col, row + 2, col + 1)) { //Checks for space right of piece
-                Board.board[row + 2][col + 1].toggleMoveOption();
+                if(!checkAttack) Board.board[row + 2][col + 1].toggleMoveOption();
             }
             if(Board.withinBoard(row, col, row + 2, col - 1)) { //Checks for space left of piece
-                Board.board[row + 2][col - 1].toggleMoveOption();
+                if(!checkAttack) Board.board[row + 2][col - 1].toggleMoveOption();
             }
         }
     }
