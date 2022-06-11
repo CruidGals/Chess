@@ -149,24 +149,6 @@ public class Square extends JPanel
         }
     }
 
-    //Move Display Options
-    public void displayPossibleMoves()
-    {
-        if(p.getRank() == 1) {
-            ((Pawn) p).togglePieceMoveOptions(false);
-        } else if(p.getRank() == 2) {
-            ((Bishop) p).togglePieceMoveOptions(false);
-        } else if(p.getRank() == 3) {
-            ((Knight) p).togglePieceMoveOptions(false);
-        } else if(p.getRank() == 4) {
-            ((Rook) p).togglePieceMoveOptions(false);
-        } else if(p.getRank() == 5) {
-            ((Queen) p).togglePieceMoveOptions(false);
-        } else if(p.getRank() == 6) {
-            ((King) p).togglePieceMoveOptions(false);
-        }
-    }
-
     public static void hidePossibleMoves()
     {
         for(Square[] row : Board.board)
@@ -271,7 +253,7 @@ public class Square extends JPanel
                 if(Main.turn == temp.getColor())
                 {
                     colorSquare(temp);
-                    temp.displayPossibleMoves();
+                    p.togglePieceMoveOptions(false); //Display move options
                     Main.startSquare = temp;
                 }
                 else if(Main.endSquare == null)
