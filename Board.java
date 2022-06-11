@@ -88,7 +88,7 @@ public class Board extends JFrame
         if(bruh)
         {
             Piece temp = board[ex][ey].getPiece();
-            
+            clearAttackableSpaces();
             if(board[sx][sy].getRank() == 1)
             {
                 ((Pawn) Board.board[sx][sy].getPiece()).turnOffDoubleMove();
@@ -96,7 +96,6 @@ public class Board extends JFrame
             
             board[ex][ey].setP(board[sx][sy].getPiece());
             board[ex][ey].getPiece().setConnectedSquare(board[ex][ey]);
-            clearAttackableSpaces();
             board[sx][sy].setP(temp);
             board[sx][sy].setP(new Piece(0, board[sx][sy]));
             

@@ -42,33 +42,41 @@ public class Knight extends Piece
         if(Board.withinBoard(row, col, row, col - 2)) { //Checks for space left of piece
             if(Board.withinBoard(row, col, row + 1, col - 2)) { //Checks for space below piece
                 if(!checkAttack) Board.board[row + 1][col - 2].toggleMoveOption();
+                else Board.board[row + 1][col - 2].setCheckedByColor(getColor());
             }
             if(Board.withinBoard(row, col, row - 1, col - 2)) { //Checks for space above piece
                 if(!checkAttack) Board.board[row - 1][col - 2].toggleMoveOption();
+                else Board.board[row - 1][col - 2].setCheckedByColor(getColor());
             }
         }
         if(Board.withinBoard(row, col, row, col + 2)) { //Checks for space right of piece
             if(Board.withinBoard(row, col, row + 1, col + 2)) { //Checks for space below piece
                 if(!checkAttack) Board.board[row + 1][col + 2].toggleMoveOption();
+                else Board.board[row + 1][col + 2].setCheckedByColor(getColor());
             }
             if(Board.withinBoard(row, col, row - 1, col + 2)) { //Checks for space above piece
                 if(!checkAttack) Board.board[row - 1][col + 2].toggleMoveOption();
+                else Board.board[row - 1][col + 2].setCheckedByColor(getColor());
             }
         }
         if(Board.withinBoard(row, col, row - 2, col)) { //Checks for space below piece
             if(Board.withinBoard(row, col, row - 2, col + 1)) { //Checks for space right of piece
                 if(!checkAttack) Board.board[row - 2][col + 1].toggleMoveOption();
+                else Board.board[row - 2][col + 1].setCheckedByColor(getColor());
             }
             if(Board.withinBoard(row, col, row - 2, col - 1)) { //Checks for space left of piece
                 if(!checkAttack) Board.board[row - 2][col - 1].toggleMoveOption();
+                else Board.board[row - 2][col - 1].setCheckedByColor(getColor());
             }
         }
         if(Board.withinBoard(row, col, row + 2, col)) { //Checks for space above piece
             if(Board.withinBoard(row, col, row + 2, col + 1)) { //Checks for space right of piece
                 if(!checkAttack) Board.board[row + 2][col + 1].toggleMoveOption();
+                else Board.board[row + 2][col + 1].setCheckedByColor(getColor());
             }
             if(Board.withinBoard(row, col, row + 2, col - 1)) { //Checks for space left of piece
                 if(!checkAttack) Board.board[row + 2][col - 1].toggleMoveOption();
+                else Board.board[row + 2][col - 1].setCheckedByColor(getColor());
             }
         }
     }
