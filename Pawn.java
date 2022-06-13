@@ -91,44 +91,26 @@ public class Pawn extends Piece
 
         int row = temp.getRow();
         int col = temp.getCol();
-
-        if(Main.turn == 1)
+        
+        int direction = -1; //Default direction goes from white
+        if(getConnectedSquare().getColor() != 1) {
+            direction = 1; //Direction goes to black if not correct turn 
+        }
+        if(Board.withinBoard(row, col, row + 1 * direction, col) && Board.board[row + 1 * direction][col].getColor() == 0) 
         {
-            if(Board.board[row - 1][col].getColor() == 0) 
+            Board.board[row + 1 * direction][col].toggleMoveOption();
+            if(Board.withinBoard(row, col, row + 2 * direction, col) && Board.board[row + 2 * direction][col].getColor() == 0 && isDoubleMove) 
             {
-                Board.board[row - 1][col].toggleMoveOption();
-                if(Board.board[row - 2][col].getColor() == 0 && isDoubleMove) 
-                {
-                    Board.board[row - 2][col].toggleMoveOption();
-                }
-            }
-            if(Board.withinBoard(row, col, row - 1, col + 1) && Board.board[row - 1][col + 1].getColor() == 2)
-            {
-                Board.board[row - 1][col + 1].toggleMoveOption();
-            }
-            if(Board.withinBoard(row, col, row - 1, col - 1) && Board.board[row - 1][col - 1].getColor() == 2)
-            {
-                Board.board[row - 1][col - 1].toggleMoveOption();
+                Board.board[row + 2 * direction][col].toggleMoveOption();
             }
         }
-        else
+        if(Board.withinBoard(row, col, row + 1 * direction, col + 1) && Board.board[row + 1 * direction][col + 1].getColor() != Main.turn && Board.board[row + 1 * direction][col + 1].getColor() != 0)
         {
-            if(Board.board[row + 1][col].getColor() == 0) 
-            {
-                Board.board[row + 1][col].toggleMoveOption();
-                if(Board.board[row + 2][col].getColor() == 0 && isDoubleMove) 
-                {
-                    Board.board[row + 2][col].toggleMoveOption();
-                }
-            }
-            if(Board.withinBoard(row, col, row + 1, col + 1) && Board.board[row + 1][col + 1].getColor() == 1)
-            {
-                Board.board[row + 1][col + 1].toggleMoveOption();
-            }
-            if(Board.withinBoard(row, col, row + 1, col - 1) && (Board.board[row + 1][col - 1].getColor() == 1))
-            {
-                Board.board[row + 1][col - 1].toggleMoveOption();
-            }
+            Board.board[row + 1 * direction][col + 1].toggleMoveOption();
+        }
+        if(Board.withinBoard(row, col, row + 1 * direction, col - 1) && Board.board[row + 1 * direction][col - 1].getColor() != Main.turn && Board.board[row + 1 * direction][col - 1].getColor() != 0)
+        {
+                Board.board[row + 1 * direction][col - 1].toggleMoveOption();
         }
     }
 }
