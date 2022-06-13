@@ -25,8 +25,7 @@ public class Queen extends Piece
         return output;
     }
     
-    @Override
-    public void togglePieceMoveOptions(boolean checkAttack)
+    public void togglePieceMoveOptions()
     {
         Square temp = getConnectedSquare();
 
@@ -38,8 +37,7 @@ public class Queen extends Piece
             int increment = 1;
             while(Board.withinBoard(row, col, row + i * increment, col) &&
                   Board.board[row + i * increment][col].getColor() != Main.turn) {
-                if(!checkAttack) Board.board[row + i * increment][col].toggleMoveOption();
-
+                Board.board[row + i * increment][col].toggleMoveOption();
                 if(Board.board[row + i * increment][col].getColor() > 0)
                 {
                     break;
@@ -51,8 +49,7 @@ public class Queen extends Piece
             int increment = 1;
             while(Board.withinBoard(row, col, row, col + j * increment) &&
                   Board.board[row][col + j * increment].getColor() != Main.turn) {
-                if(!checkAttack) Board.board[row][col + j * increment].toggleMoveOption();
-
+                Board.board[row][col + j * increment].toggleMoveOption();
                 if(Board.board[row][col + j * increment].getColor() > 0)
                 {
                     break;
@@ -67,8 +64,7 @@ public class Queen extends Piece
                 int increment = 1;
                 while(Board.withinBoard(row, col, row + i * increment, col + j * increment) &&
                       Board.board[row + i * increment][col + j * increment].getColor() != Main.turn) {
-                    if(!checkAttack) Board.board[row + i * increment][col + j * increment].toggleMoveOption();
-                    
+                    Board.board[row + i * increment][col + j * increment].toggleMoveOption();
                     if(Board.board[row + i * increment][col + j * increment].getColor() > 0)
                     {
                         break;

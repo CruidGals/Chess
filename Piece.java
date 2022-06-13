@@ -1,6 +1,8 @@
 
 import javax.swing.*;
 import java.awt.*;
+import javax.swing.*;
+import java.awt.event.*;
 /**
  * Write a description of class ColorPanel here.
  *
@@ -43,7 +45,7 @@ public class Piece extends JPanel implements Cloneable
        add(blackPiece, "Black");
        add(noPiece, "None");
 
-       updatePieceUI();
+       updatePiece();
     }
     
     public Piece(int color, Square connectedSquare)
@@ -63,7 +65,7 @@ public class Piece extends JPanel implements Cloneable
         add(blackPiece, "Black");
         add(noPiece, "None");
 
-        updatePieceUI();
+        updatePiece();
     }
     
     public int getColor() {
@@ -98,9 +100,7 @@ public class Piece extends JPanel implements Cloneable
         return false;
     }
 
-    public void togglePieceMoveOptions(boolean checkAttack) {} //Abstract function : Meant to be overridable
-
-    public void updatePieceUI()
+    public void updatePiece()
     {
         if(c == 1)
         {

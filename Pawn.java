@@ -8,7 +8,6 @@ import java.awt.*;
 public class Pawn extends Piece
 {
     private boolean isDoubleMove = true;
-
     public Pawn(int color, Square square)
     {
         super(color, square, "WhitePawn.png", "BlackPawn.png");
@@ -85,53 +84,51 @@ public class Pawn extends Piece
         
         return output;
     }
-    
-    @Override
-    /**
-     * Method has two functions (function toggled by the parameter) It can:
-     *  - Highlight the possible spaces the pawn can go
-     *  - Update the attackable squares (variable tracked is called timesCheckedByColor) 
-     * @param checkAttack
-     */
-    public void togglePieceMoveOptions(boolean checkAttack)
+
+    public void togglePieceMoveOptions()
     {
         Square temp = getConnectedSquare();
 
         int row = temp.getRow();
         int col = temp.getCol();
 
-        int direction = -1; //Default direction goes from white
-        if(getConnectedSquare().getColor() != 1) {
-            direction = 1; //Direction goes to black if not correct turn 
-        }
-
-        if(Board.board[row + 1 * direction][col].getColor() == 0) 
+        if(Main.turn == 1)
         {
-            if(!checkAttack) Board.board[row + 1 * direction][col].toggleMoveOption();
-            if(Board.board[row + 2 * direction][col].getColor() == 0 && isDoubleMove) 
+            if(Board.board[row - 1][col].getColor() == 0) 
             {
-                if(!checkAttack) Board.board[row + 2 * direction][col].toggleMoveOption();
+                Board.board[row - 1][col].toggleMoveOption();
+                if(Board.board[row - 2][col].getColor() == 0 && isDoubleMove) 
+                {
+                    Board.board[row - 2][col].toggleMoveOption();
+                }
+            }
+            if(Board.withinBoard(row, col, row - 1, col + 1) && Board.board[row - 1][col + 1].getColor() == 2)
+            {
+                Board.board[row - 1][col + 1].toggleMoveOption();
+            }
+            if(Board.withinBoard(row, col, row - 1, col - 1) && Board.board[row - 1][col - 1].getColor() == 2)
+            {
+                Board.board[row - 1][col - 1].toggleMoveOption();
             }
         }
-        if(Board.withinBoard(row, col, row + 1 * direction, col + 1))
+        else
         {
-            if(!checkAttack) {
-                if(Board.board[row + 1 * direction][col + 1].getColor() == 2) Board.board[row + 1 * direction][col + 1].toggleMoveOption();
-            } else {
-                Board.board[row + 1 * direction][col + 1].setCheckedByColor(getColor());
+            if(Board.board[row + 1][col].getColor() == 0) 
+            {
+                Board.board[row + 1][col].toggleMoveOption();
+                if(Board.board[row + 2][col].getColor() == 0 && isDoubleMove) 
+                {
+                    Board.board[row + 2][col].toggleMoveOption();
+                }
+            }
+            if(Board.withinBoard(row, col, row + 1, col + 1) && Board.board[row + 1][col + 1].getColor() == 1)
+            {
+                Board.board[row + 1][col + 1].toggleMoveOption();
+            }
+            if(Board.withinBoard(row, col, row + 1, col - 1) && (Board.board[row + 1][col - 1].getColor() == 1))
+            {
+                Board.board[row + 1][col - 1].toggleMoveOption();
             }
         }
-        if(Board.withinBoard(row, col, row + 1 * direction, col - 1))
-        {
-            if(!checkAttack) {
-                if(Board.board[row + 1 * direction][col - 1].getColor() == 2) Board.board[row + 1 * direction][col - 1].toggleMoveOption();
-            } else {
-                Board.board[row + 1 * direction][col - 1].setCheckedByColor(getColor());
-            }
-        }
-    
-
     }
-
-
 }

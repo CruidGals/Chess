@@ -31,8 +31,6 @@ public class Board extends JFrame
                 getContentPane().add(col);
             }
         }
-
-        updateAttackableSpaces();
     }
     
     public static boolean withinBoard(int sx, int sy, int ex, int ey)
@@ -88,7 +86,7 @@ public class Board extends JFrame
         if(bruh)
         {
             Piece temp = board[ex][ey].getPiece();
-            clearAttackableSpaces();
+            
             if(board[sx][sy].getRank() == 1)
             {
                 ((Pawn) Board.board[sx][sy].getPiece()).turnOffDoubleMove();
@@ -99,9 +97,13 @@ public class Board extends JFrame
             board[sx][sy].setP(temp);
             board[sx][sy].setP(new Piece(0, board[sx][sy]));
             
-            board[ex][ey].getPiece().updatePieceUI();
-            board[sx][sy].getPiece().updatePieceUI();
-            updateAttackableSpaces();
+            if((turn == 1 && ex == 7)||(turn == 2 && ex == 0))
+            {
+                //makeKing(ex, ey);
+            }
+            
+            board[ex][ey].getPiece().updatePiece();
+            board[sx][sy].getPiece().updatePiece();
         }
         return bruh;
     }
@@ -109,26 +111,6 @@ public class Board extends JFrame
     private boolean isAttack(int sx, int sy, int ex, int ey)
     {
         return ((sx-1 > ex || ex > sx+1) || (sy-1 > ey || ey > sy+1));
-    }
-
-    public void updateAttackableSpaces()
-    {
-        for(Square[] row : board) {
-            for(Square col : row) {
-                col.getPiece().togglePieceMoveOptions(true);
-                System.out.print(col.getRank() + " ");
-            }
-            System.out.println();
-        }
-    }
-
-    public void clearAttackableSpaces()
-    {
-        for(Square[] row : board) {
-            for(Square col : row) {
-                col.clearCheckedByColor();
-            }
-        }
     }
     
     public int gameWinner()

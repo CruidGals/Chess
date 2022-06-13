@@ -25,9 +25,6 @@ public class Square extends JPanel
     private final int col; // Column
     private boolean isDark;
 
-    private int timesCheckedByWhite = 0;
-    private int timesCheckedByBlack = 0;
-
     private CardLayout cards = new CardLayout();
 
     public Square(int color, int x, int y)
@@ -75,48 +72,7 @@ public class Square extends JPanel
     {
         return p.getRank();
     }
-
-    public Piece getPiece() 
-    {
-        return p;
-    }
     
-    public boolean isShowingMoveOption()
-    {
-        return showingMoveOption;
-    }
-
-    public boolean isCheckedByWhite()
-    {
-        if(timesCheckedByWhite > 0) {
-            return true;
-        }
-        return false;
-    }
-    
-    public boolean isCheckedByBlack()
-    {
-        if(timesCheckedByBlack > 0) {
-            return true;
-        }
-        return false;
-    }
-
-    public void setCheckedByColor(int color)
-    {
-        if(color == 1) {
-            timesCheckedByWhite++;
-        } else if (color == 2) {
-            timesCheckedByBlack++;
-        }
-    }
-
-    public void clearCheckedByColor()
-    {
-        timesCheckedByBlack = 0;
-        timesCheckedByWhite = 0;
-    }
-
     public void setP(Piece v)
     {
         remove(p);
@@ -125,6 +81,11 @@ public class Square extends JPanel
         cardManager.revalidate();
         cards.show(cardManager, "Piece");
     } 
+
+    public boolean isShowingMoveOption()
+    {
+        return showingMoveOption;
+    }
 
     public void setColor(int c)
     {
@@ -136,6 +97,11 @@ public class Square extends JPanel
         p = new Pawn(2, this);
         cards.show(cardManager, "MoveOption");
     } 
+    
+    public Piece getPiece() 
+    {
+        return p;
+    }
 
     public void setGameBackground() 
     {
@@ -146,6 +112,23 @@ public class Square extends JPanel
         else 
         {
             setBackground(new Color(238, 238, 213));
+        }
+    }
+
+    public void displayPossibleMoves()
+    {
+        if(p.getRank() == 1) {
+            ((Pawn) p).togglePieceMoveOptions();
+        } else if(p.getRank() == 2) {
+            ((Bishop) p).togglePieceMoveOptions();
+        } else if(p.getRank() == 3) {
+            ((Knight) p).togglePieceMoveOptions();
+        } else if(p.getRank() == 4) {
+            ((Rook) p).togglePieceMoveOptions();
+        } else if(p.getRank() == 5) {
+            ((Queen) p).togglePieceMoveOptions();
+        } else if(p.getRank() == 6) {
+            ((King) p).togglePieceMoveOptions();
         }
     }
 
@@ -230,6 +213,12 @@ public class Square extends JPanel
         return piece;
     }
 
+
+    public void reset()
+    {
+        this.setColor(0);
+    }
+
     private class ClickListener extends MouseAdapter
     {
         @Override
@@ -253,7 +242,7 @@ public class Square extends JPanel
                 if(Main.turn == temp.getColor())
                 {
                     colorSquare(temp);
-                    p.togglePieceMoveOptions(false); //Display move options
+                    temp.displayPossibleMoves();
                     Main.startSquare = temp;
                 }
                 else if(Main.endSquare == null)
@@ -279,9 +268,7 @@ public class Square extends JPanel
             //DEBUG OPTION
             if(SwingUtilities.isRightMouseButton(e))
             {
-                System.out.println("Times checked by white: " + timesCheckedByWhite);
-                System.out.println("Times checked by black: " + timesCheckedByBlack);
-                System.out.println();
+                createPawn();
             }
         }
         

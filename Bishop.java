@@ -53,8 +53,7 @@ public class Bishop extends Piece
         return output;
     }
 
-    @Override
-    public void togglePieceMoveOptions(boolean checkAttack)
+    public void togglePieceMoveOptions()
     {
         Square temp = getConnectedSquare();
 
@@ -66,9 +65,8 @@ public class Bishop extends Piece
                 int increment = 1;
                 while(Board.withinBoard(row, col, row + i * increment, col + j * increment) &&
                       Board.board[row + i * increment][col + j * increment].getColor() != Main.turn) {
-                    if(!checkAttack) Board.board[row + i * increment][col + j * increment].toggleMoveOption();
-                    else Board.board[row + i * increment][col + j * increment].setCheckedByColor(getColor());
-                    
+                        
+                    Board.board[row + i * increment][col + j * increment].toggleMoveOption();
                     if(Board.board[row + i * increment][col + j * increment].getColor() > 0)
                     {
                         break;
