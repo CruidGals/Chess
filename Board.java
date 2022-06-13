@@ -79,6 +79,27 @@ public class Board extends JFrame
         return output;
     }
     
+    public boolean isCheck(int row, int col)
+    {
+        int[][][] moves = new int[15][15][6];
+        boolean output = false;
+        for(int r = -7; r < 15; r++)
+        {
+            for(int c = -7; c < 15; c++)
+            {
+                 for(int p = 0; p<6; p++)
+                 {
+                     moves[r+7][c+7][r]=-2
+                 }
+                 if(Math.abs(r)==Math.abs(c))
+                 {
+                     moves[r+7][c+7][1]=2;
+                 }
+                
+            }
+        }
+        return output;
+    }
     
     public boolean move(int turn, int sx, int sy, int ex, int ey)
     {
