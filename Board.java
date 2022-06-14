@@ -79,25 +79,30 @@ public class Board extends JFrame
         return output;
     }
     
-    public boolean isCheck(int row, int col)
+    public boolean isCheck(int kingColor, int row, int col)
     {
-        int[][][] moves = new int[15][15][6];
         boolean output = false;
-        for(int r = -7; r < 15; r++)
+        int otherTurn;
+        if(kingColor == 1)
         {
-            for(int c = -7; c < 15; c++)
+            otherTurn = 2;
+        }
+        else
+        {
+            otherTurn = 1;
+        }
+        for(int r = -7; r < 8; r++)
+        {
+            for(int c = -7; c < 8; c++)
             {
-                 for(int p = 0; p<6; p++)
+                 if(!output)
                  {
-                     moves[r+7][c+7][r]=-2
+                     output=isMoveValid(otherTurn, row+r, col+c, row, col);
                  }
-                 if(Math.abs(r)==Math.abs(c))
-                 {
-                     moves[r+7][c+7][1]=2;
-                 }
-                
             }
         }
+        
+        
         return output;
     }
     
